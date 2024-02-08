@@ -1,0 +1,30 @@
+import Card from "./components/Card"
+import { useState, useEffect } from "react"
+import options from "./api"
+import Navbar from "./components/Navbar"
+
+function Tvseries() {
+
+  const [tvSeries, setTvSeries] = useState([])
+
+  useEffect(() => {
+    fetch('https://api.themoviedb.org/3/tv/popular?language=en-US&page=1', options)
+      .then(response => response.json())
+      .then(data => {
+        setTvSeries(data)
+      })
+        .catch(err => console.log(err))
+  }, [])
+
+  return (
+    <>
+    <Navbar/>
+    <div>
+        <p>This all Tv Series mate</p>
+        <Card movies={tvSeries}/>
+    </div>
+    </>
+  )
+}
+
+export default Tvseries
