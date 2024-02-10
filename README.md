@@ -1,8 +1,26 @@
-# React + Vite
+# Absolute Cinema
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Absolute Cinema/Absc is a react app that intend to fill my portofolio, Absc used for search and view metadata of Movies and Tv Series. this repo is under development yet.
 
-Currently, two official plugins are available:
+## Getting started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Instruction how to clone, install dependencies, and run the app locally
+
+```
+git clone https://github.com/afterhourss/absolute-cinema.git
+cd absolute-cinema
+npm install
+npm run dev
+```
+
+## Technology used
+- React + Vite
+- CSS Preprocessor or SASS/SCSS
+- Framer Motion
+- React Icons
+
+## Contributing
+
+If you'd like to give me a hand, clone this repository and pull request if you want yahahahahay
+
+### aku pergi...
