@@ -31,7 +31,7 @@ function Card({movies}) {
           </div>
       </div>
       })}
-      <Info title={activeInfo.title} desc={activeInfo.overview} posters={getPoster(activeInfo.poster_path)} isShow={showInfo} setShow={setShowInfo} rating={activeInfo.vote_average?.toFixed(1)} date={activeInfo.release_date?.split('-')[0]}/>
+      <Info title={activeInfo.title || activeInfo.name} desc={activeInfo.overview} posters={getPoster(activeInfo.poster_path)} isShow={showInfo} setShow={setShowInfo} rating={activeInfo.vote_average?.toFixed(1)} date={activeInfo.release_date?.split('-')[0]} genre_id={activeInfo.genre_ids}/>
     </div>
   )
 }

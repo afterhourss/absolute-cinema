@@ -2,8 +2,6 @@ import './styles/main.scss'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Box from './components/Box'
-import { FaList } from "react-icons/fa6";
-import { IoGrid } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
 import Footer from './components/Footer'
 import { lazy, Suspense } from 'react'
@@ -22,6 +20,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
         setrending(data)
+        console.log(data)
       })
         .catch(err => console.log(err))
   }, [])
@@ -38,8 +37,7 @@ function App() {
           <div className='section-header'>
             <h2>Trending movies</h2>
             <div className='header-icon'>
-              <FaList/>
-              <IoGrid />
+              <div>View All</div>
             </div>
           </div>
           <Suspense fallback={<Loading/>}>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import { IoMdMenu } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 function Navbar() {
 
@@ -15,12 +16,11 @@ function Navbar() {
             </div>
             <h1>Absc</h1>
         </div>
-        <div className="navbar-right hidden">
+        <div className="navbar-right">
             <ul>
-                <li><a href="#">Movie</a></li>
-                <li><a href="#">Tv Series</a></li>
-                <li><a href="#">Kino</a></li>
-                <li><a href="#">Movie</a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/movies">Movie</Link></li>
+                <li><Link to="/tvseries">Tv Series</Link></li>
             </ul>
         </div>
     </div>
