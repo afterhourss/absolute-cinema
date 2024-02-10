@@ -1,5 +1,7 @@
 # Absolute Cinema
 
+![martin-scorcese](https://i.kym-cdn.com/entries/icons/original/000/047/133/cover1.jpg)
+
 Absolute Cinema/Absc is a react app that intend to fill my portofolio, Absc used for search and view metadata of Movies and Tv Series. this repo is under development yet.
 
 ## Getting started
