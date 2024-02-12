@@ -25,9 +25,6 @@ function Card({movies}) {
       return <div className="card" key={item.id} onClick={() => handleClick(item)}>
           <div className="card-image">  
               <img src={getPoster(item.poster_path)} alt="" />
-              <div className="card-text">
-                  <h2>{item.title}</h2>
-              </div>
           </div>
       </div>
       })}

@@ -16,11 +16,11 @@ function getGenre(ids){
     return foundGenre ? foundGenre.name : undefined
 }
 
-
 function Info({title, posters, desc, rating, date, genre_id, isShow, setShow}) {
+
   const infoAnimation = {
-    open: {opacity: 1, y: "-20rem"},
-    closed: {opacity: 0, y: 0},
+    open: {opacity: 1, y: "-20rem", display: "block"},
+    closed: {opacity: 0, y: 0, display: "none"},
     blankSideOpen: {opacity: 0.2},
     blankSideClose: {opacity: 0}
   }
@@ -44,7 +44,7 @@ function Info({title, posters, desc, rating, date, genre_id, isShow, setShow}) {
           ))}
           <div className="info-content">
             <div className="desc">
-              {desc === "" ? "No Overview" : limitString(String(desc), 200)}
+              {desc === "" ? "No Overview" : limitString(String(desc), 300)}
             </div>
           </div>
         </div>

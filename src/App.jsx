@@ -8,6 +8,7 @@ import { lazy, Suspense } from 'react'
 import Loading from './components/Loading';
 import options from "./api"
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Card = lazy(() => import('./components/Card'))
 
@@ -20,7 +21,6 @@ function App() {
       .then(response => response.json())
       .then(data => {
         setrending(data)
-        console.log(data)
       })
         .catch(err => console.log(err))
   }, [])
@@ -37,7 +37,7 @@ function App() {
           <div className='section-header'>
             <h2>Trending movies</h2>
             <div className='header-icon'>
-              <div>View All</div>
+              <div><Link to="/movies">View All</Link></div>
             </div>
           </div>
           <Suspense fallback={<Loading/>}>

@@ -20,8 +20,8 @@ function Tvseries() {
   return (
     <>
     <Navbar/>
-    <div>
-        <p>This all Tv Series mate</p>
+    <div className="container">
+        <p>List by Tv Series</p>
         <Card movies={tvSeries}/>
     </div>
     </>
