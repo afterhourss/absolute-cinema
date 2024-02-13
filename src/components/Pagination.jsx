@@ -3,23 +3,31 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 function Pagination({ data, setPage, currPage }) {
 
-  const [sliceIndex, setSliceIndex] = useState(0)
-
-  function handleSliceIndex(){
-    setSliceIndex(sliceIndex + 7)
-  }
-  function handleSliceIndexBack(){
-    setSliceIndex(sliceIndex - 7)
-  }
+  const [sliceIndexStart, setSliceIndexStart] = useState(0)
 
   const totalPage = data.total_pages
   const currentPage = currPage
+  const sliceIndexEnd = sliceIndexStart + 7
 
-  const handlePageClick = (pageNumber) => {
+  function handlePageClick(pageNumber){
     setPage(pageNumber)
   }
+  function handleNextClick(){
+    if(currentPage === sliceIndexEnd){
+      setSliceIndexStart(sliceIndexStart + 1)
+      setPage(currentPage + 1)
+    }
+    setPage(currentPage + 1)
+  }
+  function handleBackClick(){
+    if(currentPage === (sliceIndexStart + 1)){
+      setSliceIndexStart(sliceIndexStart - 1)
+      setPage(currentPage - 1)
+    }
+    setPage(currentPage - 1)
+  }
 
-  const renderPageNumbers = () => {
+  function renderPageNumbers(){
     const pageNumbers = []
     for (let i = 1; i <= totalPage; i++) {
       pageNumbers.push(
@@ -28,22 +36,21 @@ function Pagination({ data, setPage, currPage }) {
         </li>
       )
     }
-    return pageNumbers.slice(sliceIndex, sliceIndex + 7)
+    const slicedPageNumbers = pageNumbers.slice(sliceIndexStart, sliceIndexEnd)
+    return slicedPageNumbers
   }
-
-  console.log(sliceIndex)
 
   return (
     <div>
       <ul className="pagination">
-        {sliceIndex === 0 ? " " : <li onClick={() => handleSliceIndexBack()}>
+        {currentPage === 1 ? " " : <li onClick={() => handleBackClick()}>
           <button><IoIosArrowBack /></button>
         </li>}
         {renderPageNumbers()}
-        <li>
+        {(renderPageNumbers().length > 6) && <li>
           <button>...</button>
-        </li>
-        <li onClick={() => handleSliceIndex()}>
+        </li>}
+        <li onClick={() => handleNextClick()}>
           <button><IoIosArrowForward /></button>
         </li>
       </ul>
