@@ -2,6 +2,9 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import { IoMdMenu } from "react-icons/io";
 import { Link } from "react-router-dom";
+import Searchbar from "./Searchbar";
+import { FaGithub } from "react-icons/fa";
+import { MdOutlineLightMode } from "react-icons/md";
 
 function Navbar() {
 
@@ -22,6 +25,9 @@ function Navbar() {
                 <li><Link to="/movies">Movie</Link></li>
                 <li><Link to="/tvseries">Tv Series</Link></li>
             </ul>
+            <Searchbar/>
+            <FaGithub className="icon"/>
+            <MdOutlineLightMode className="icon"/>
         </div>
     </div>
     <Sidebar isHidden={hiddenBar} setHidden={setHiddenBar}/>
