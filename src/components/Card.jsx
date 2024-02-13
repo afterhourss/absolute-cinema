@@ -23,8 +23,8 @@ function Card({movies}) {
     <div className='card-wrapper'>
       {movies.results?.map(item => {
       return <div className="card" key={item.id} onClick={() => handleClick(item)}>
-          <div className="card-image">  
-              <img src={getPoster(item.poster_path)} alt="" />
+          <div className="card-image">
+              <img src={item.poster_path === null ? '/no_posters.png' : getPoster(item.poster_path)} alt="" />
           </div>
       </div>
       })}
