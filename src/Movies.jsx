@@ -14,12 +14,10 @@ function Movies() {
       .then(response => response.json())
       .then(data => {
         setMovies(data)
-        console.log(data)
       })
         .catch(err => console.log(err))
   }, [currentPage])
 
-  console.log(currentPage)
 
   return (
     <>
