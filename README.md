@@ -16,6 +16,7 @@ npm run dev
 ```
 
 ## Technology used
+- TMDB API
 - React + Vite
 - CSS Preprocessor or SASS/SCSS
 - Framer Motion
@@ -25,4 +26,5 @@ npm run dev
 
 If you'd like to give me a hand, clone this repository and pull request if you want yahahahahay
 
-### aku pergi...
+note: 
+this app currently not importing any api yet!!!
