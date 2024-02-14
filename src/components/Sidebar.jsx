@@ -2,6 +2,8 @@ import { IoMdClose } from "react-icons/io"
 import Label from "./Label"
 import {motion} from "framer-motion"
 import { Link } from "react-router-dom"
+import { FaGithub } from "react-icons/fa";
+import { MdOutlineLightMode } from "react-icons/md";
 
 const sidebarAnimation = {
     open: {opacity: 1, x: "17rem"},
@@ -10,7 +12,8 @@ const sidebarAnimation = {
     blankSideClose: {opacity: 0}
 }
 
-function Sidebar({isHidden, setHidden}) {
+function Sidebar({isHidden, setHidden, darkTheme, setDarkTheme}) {
+
   return (
     <>
     <motion.div transition={{type: "tween"}} animate={isHidden ? "closed" : "open"} variants={sidebarAnimation} className="sidebar-container">
@@ -20,10 +23,12 @@ function Sidebar({isHidden, setHidden}) {
                 Happy new year folks!🎉
             </Label>
             <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/movies">Movie</Link></li>
-                <li><Link to="/tvseries">Tv Series</Link></li>
+                <li><Link to="/" onClick={() => setHidden(!isHidden)}>Home</Link></li>
+                <li><Link to="/movies" onClick={() => setHidden(!isHidden)}>Movie</Link></li>
+                <li><Link to="/tvseries" onClick={() => setHidden(!isHidden)}>Tv Series</Link></li>
             </ul>
+            <FaGithub className="icon"/>
+            <MdOutlineLightMode className="icon" onClick={() => setDarkTheme(!darkTheme)}/>
         </div>
         <div className="sidebar-icon-close" onClick={() => setHidden(!isHidden)}>
             <IoMdClose />
