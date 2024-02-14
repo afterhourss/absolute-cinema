@@ -2,31 +2,21 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
-import Movies from './Movies.jsx'
+
+import Home from './Home.jsx'
 import Tvseries from './Tvseries.jsx'
-import Metadata from './components/Metadata.jsx'
-import Search from './Search.jsx'
+import Movies from './Movies.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App/>,
-  },
-  {
-    path: '/movies',
-    element: <Movies/>,
-  },
-  {
-    path: '/tvseries',
-    element: <Tvseries/>,
-  },
-  {
-    path: '/searched',
-    element: <Search/>,
-  },
-  {
-    path: '/metadata',
-    element: <Metadata/>,
+  
+    children: [
+      { index: true, element: <Home/> },
+      { path: "movies", element: <Movies/> },
+      { path: "tvseries", element: <Tvseries/> },
+    ]
   },
 ])
 

@@ -1,19 +1,17 @@
 import './styles/main.scss'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Box from './components/Box'
-import { FaSearch } from "react-icons/fa";
-import Footer from './components/Footer'
-import { lazy, Suspense } from 'react'
-import Loading from './components/Loading';
 import options from "./api"
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Home from './Home';
+import Movies from './Movies.jsx'
+import Tvseries from './Tvseries.jsx'
+import Metadata from './components/Metadata.jsx'
+import Search from './Search.jsx'
+import { Outlet } from 'react-router-dom';
 
-const Card = lazy(() => import('./components/Card'))
 
 function App() {
-
+  const [dark, setDark] = useState(false);
   const [trending, setrending] = useState([])
 
   useEffect(() => {
@@ -27,25 +25,11 @@ function App() {
 
   return (
     <>
-      <Navbar/>
-      <div className='container'>
-        <Hero/>
-        <div className="hero-boxes">
-          <Box title="Search anything" text="Lorem ipsum dolor sit amet consectetur adipisicing elit." icon={<FaSearch/>}/>
-        </div>
-        <div className='list-section'>
-          <div className='section-header'>
-            <h2>Trending movies</h2>
-            <div className='header-icon'>
-              <div><Link to="/movies">View All</Link></div>
-            </div>
-          </div>
-          <Suspense fallback={<Loading/>}>
-            <Card movies={trending}/>
-          </Suspense>
-        </div>
-      </div>
-      <Footer/>
+    <div className={`theme ${dark ? "dark" : ""}`}>
+      <Navbar darkTheme={dark} setDarkTheme={setDark}/>
+  
+      <Outlet/>
+    </div>
     </>
   )
 }

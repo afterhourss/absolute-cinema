@@ -6,7 +6,7 @@ function getPoster(path){
   if(path){
     return `https://media.themoviedb.org/t/p/w220_and_h330_face/${path}`
   }
-  return undefined
+  return null
 }
 
 function Card({movies}) {

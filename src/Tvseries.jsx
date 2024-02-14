@@ -1,7 +1,6 @@
 import Card from "./components/Card"
 import { useState, useEffect } from "react"
 import options from "./api"
-import Navbar from "./components/Navbar"
 import Pagination from "./components/Pagination"
 
 function Tvseries() {
@@ -21,7 +20,6 @@ function Tvseries() {
 
   return (
     <>
-    <Navbar/>
     <div className="container">
         <p>List by Tv Series</p>
         <Card movies={tvSeries}/>

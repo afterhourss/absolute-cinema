@@ -17,7 +17,7 @@ function getGenre(ids){
 }
 
 function Info({title, posters, desc, rating, date, genre_id, isShow, setShow}) {
-
+  
   const infoAnimation = {
     open: {opacity: 1, y: "-20rem", display: "block"},
     closed: {opacity: 0, y: 0, display: "none"},
@@ -35,7 +35,7 @@ function Info({title, posters, desc, rating, date, genre_id, isShow, setShow}) {
         </Label>
       </div>
       <div className="info-header">
-        <img src={posters} alt="" />
+        <img src={posters === null ? '/no_posters.png' : posters} alt="" />
         <div className="header-content">
           <div className="title"><h2>{title}</h2><span>{date}</span></div>
           <p>{rating}/10⭐</p>

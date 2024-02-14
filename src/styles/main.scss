@@ -328,8 +328,7 @@ body{
     display: flex;
     gap: 8px;
     justify-content: center;
-    margin-top: 24px;
-    margin: 50px 0;
+    padding: 50px 0;
     li{
         list-style-type: none;
         background-color: #EBEDF0;
@@ -449,6 +448,19 @@ body{
     .navbar-container{
         padding: 0 124px;
     }
+    .hero-container{
+        flex-flow: row;
+        gap: 2rem;
+        img{
+            width: 400px;
+            height: 400px;
+        }
+        .hero-wrap-text{
+            h2{
+                font-size: 4rem;
+            }
+        }
+    }
     
 }
 
@@ -456,5 +468,49 @@ body{
     //xtra-large
     .card-wrapper{
         gap: 1rem;
+    }
+}
+
+
+//dark mode adjustment
+
+.navbar-container.dark{
+    background-color: #010100;
+    color: #C7C7C7;
+    box-shadow: none;
+    border-bottom: 1px solid #464646;
+    .navbar-right{
+        ul li a{
+            color: #C7C7C7;
+        }
+    }
+}
+
+.theme.dark{
+    background-color: #010100;
+    .hero-container{
+       h2{
+        color: #fff;
+       }
+    }
+
+    .info-wrapper{
+        background-color: #010100;
+        color: #fff;
+        border: 1px solid #181818;
+        .info-content{
+            background-color: #464646;
+            color: #bebebe;
+        }
+    }
+    .footer{
+        border-top: 1px solid #464646;
+        .footer-text{
+            color: #fff;
+        }
+    }
+
+    .label-container{
+        background-color: #333333;
     }
 }

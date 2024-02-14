@@ -1,7 +1,6 @@
 import Card from "./components/Card"
 import { useState, useEffect } from "react"
 import options from "./api"
-import Navbar from "./components/Navbar"
 import Pagination from "./components/Pagination"
 
 function Movies() {
@@ -21,12 +20,11 @@ function Movies() {
 
   return (
     <>
-    <Navbar/>
-    <div className="container">
-        <p>List by all Movies</p>
-        <Card movies={movies}/>
-        <Pagination data={movies} setPage={setCurrentPage} currPage={currentPage}/>
-    </div>
+      <div className="container">
+          <p>List by all Movies</p>
+          <Card movies={movies}/>
+          <Pagination data={movies} setPage={setCurrentPage} currPage={currentPage}/>
+      </div>
     </>
   )
 }

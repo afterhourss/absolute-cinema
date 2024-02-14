@@ -6,13 +6,13 @@ import Searchbar from "./Searchbar";
 import { FaGithub } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 
-function Navbar() {
+function Navbar({darkTheme, setDarkTheme}) {
 
     const [hiddenBar, setHiddenBar] = useState(true);
 
   return (
     <>
-    <div className="navbar-container">
+    <div className={`navbar-container ${darkTheme ? "dark" : ""}`}>
         <div className="navbar-left">
             <div className="icon" onClick={() => setHiddenBar(!hiddenBar)}>
                 <IoMdMenu />
@@ -27,7 +27,7 @@ function Navbar() {
             </ul>
             <Searchbar/>
             <FaGithub className="icon"/>
-            <MdOutlineLightMode className="icon"/>
+            <MdOutlineLightMode className="icon" onClick={() => setDarkTheme(!darkTheme)}/>
         </div>
     </div>
     <Sidebar isHidden={hiddenBar} setHidden={setHiddenBar}/>
