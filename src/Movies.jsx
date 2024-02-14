@@ -1,7 +1,10 @@
-import Card from "./components/Card"
 import { useState, useEffect } from "react"
 import options from "./api"
 import Pagination from "./components/Pagination"
+import { lazy, Suspense } from "react"
+import Loading from "./components/Loading.jsx"
+
+const Card = lazy(() => import('./components/Card.jsx'))
 
 function Movies() {
 
@@ -22,7 +25,9 @@ function Movies() {
     <>
       <div className="container">
           <p>List by all Movies</p>
-          <Card movies={movies}/>
+          <Suspense fallback={<Loading/>}>
+            <Card movies={movies}/>
+          </Suspense>
           <Pagination data={movies} setPage={setCurrentPage} currPage={currentPage}/>
       </div>
     </>
