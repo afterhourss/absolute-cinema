@@ -7,7 +7,9 @@ function Pagination({ data, setPage, currPage }) {
 
   const totalPage = data.total_pages
   const currentPage = currPage
-  const sliceIndexEnd = sliceIndexStart + 7
+
+  const sliced = 6
+  const sliceIndexEnd = sliceIndexStart + sliced
 
   function handlePageClick(pageNumber){
     setPage(pageNumber)
@@ -30,11 +32,7 @@ function Pagination({ data, setPage, currPage }) {
   function renderPageNumbers(){
     const pageNumbers = []
     for (let i = 1; i <= totalPage; i++) {
-      pageNumbers.push(
-        <li key={i} className={i === currentPage ? 'active' : ''}>
-          <button onClick={() => handlePageClick(i)}>{i}</button>
-        </li>
-      )
+      pageNumbers.push(i)
     }
     const slicedPageNumbers = pageNumbers.slice(sliceIndexStart, sliceIndexEnd)
     return slicedPageNumbers
@@ -46,8 +44,11 @@ function Pagination({ data, setPage, currPage }) {
         {currentPage === 1 ? " " : <li onClick={() => handleBackClick()}>
           <button><IoIosArrowBack /></button>
         </li>}
-        {renderPageNumbers()}
-        {(renderPageNumbers().length > 6) && <li>
+        {renderPageNumbers().map(num => {
+        return <li key={num} className={num === currentPage ? 'active' : ''}>
+          <button onClick={() => handlePageClick(num)}>{num}</button>
+        </li>})}
+        {(renderPageNumbers().length > 5) && <li>
           <button>...</button>
         </li>}
         <li onClick={() => handleNextClick()}>
