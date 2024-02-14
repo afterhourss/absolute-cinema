@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import options from "./api"
 
-const Card = lazy(() => import('./components/Card'))
+const Card = lazy(() => import('./components/Card.jsx'))
 
 function Home() {
 
@@ -25,10 +25,11 @@ const [trending, setrending] = useState([])
 
   return (
     <>
-    <div className='container dark'>
+    <div className='container'>
         <Hero/>
         <div className="hero-boxes">
             <Box title="Search anything" text="Lorem ipsum dolor sit amet consectetur adipisicing elit." icon={<FaSearch/>}/>
+            <Box title="Complete Metadata" text="Lorem ipsum dolor sit amet consectetur adipisicing elit." icon={<FaSearch/>}/>
         </div>
         <div className='list-section'>
             <div className='section-header'>
