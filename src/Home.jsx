@@ -26,7 +26,6 @@ const [trending, setrending] = useState([])
       .then(response => response.json())
       .then(data => {
         setrending(data)
-        console.log(data)
       })
         .catch(err => console.log(err))
   }, [])

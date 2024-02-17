@@ -36,7 +36,6 @@ function Metadata() {
     .catch(err => console.log(err))
   }, [])
 
-  console.log(id)
   const bgBackdrop = {
     backgroundImage: `url('${getBackdrop(details.backdrop_path)}')`,
     backgroundRepeat: "no-repeat",
