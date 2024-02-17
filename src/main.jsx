@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       { path: "movies", element: <Movies/> },
       { path: "tvseries", element: <Tvseries/> },
       { path: "search/:query", element: <Search/> },
-      { path: "metadata/:id", element: <Metadata/> },
+      { path: "metadata/:type/:id", element: <Metadata/> },
     ]
   },
 ])

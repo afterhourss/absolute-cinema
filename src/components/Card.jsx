@@ -11,7 +11,7 @@ function getPoster(path){
   }
 }
 
-function Card({movies}) {
+function Card({movies, type}) {
 
   const [activeInfo, setActiveInfo] = useState({})
   const [showInfo, setShowInfo] = useState(false)
@@ -30,7 +30,7 @@ function Card({movies}) {
           </div>
       </motion.div>
       })}
-      <Info id={activeInfo.id} title={activeInfo.title || activeInfo.name} desc={activeInfo.overview} posters={getPoster(activeInfo.poster_path)} isShow={showInfo} setShow={setShowInfo} rating={activeInfo.vote_average?.toFixed(1)} date={activeInfo.release_date?.split('-')[0]} genre_id={activeInfo.genre_ids} language={activeInfo.original_language}/>
+      <Info id={activeInfo.id} type={activeInfo.media_type || type} title={activeInfo.title || activeInfo.name} desc={activeInfo.overview} posters={getPoster(activeInfo.poster_path)} isShow={showInfo} setShow={setShowInfo} rating={activeInfo.vote_average?.toFixed(1)} date={activeInfo.release_date?.split('-')[0]} genre_id={activeInfo.genre_ids} language={activeInfo.original_language}/>
     </div>
   )
 }

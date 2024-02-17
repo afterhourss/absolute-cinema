@@ -30,7 +30,7 @@ function Tvseries() {
     <div className="container">
         <p className="title-tvseries-page">List by Tv Series</p>
         <Suspense fallback={<Loading/>}>
-          <Card movies={tvSeries}/>
+          <Card movies={tvSeries} type={"tv"}/>
         </Suspense>
         <Pagination data={tvSeries} setPage={setCurrentPage} currPage={currentPage}/>
     </div>

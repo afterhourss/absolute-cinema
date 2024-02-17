@@ -31,7 +31,7 @@ function Movies() {
       <div className="container">
           <p className="title-page">List by all Movies</p>
           <Suspense fallback={<Loading/>}>
-            <Card movies={movies}/>
+            <Card movies={movies} type={"movie"}/>
           </Suspense>
           <Pagination data={movies} setPage={setCurrentPage} currPage={currentPage}/>
       </div>

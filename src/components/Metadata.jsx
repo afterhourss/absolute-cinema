@@ -23,12 +23,12 @@ function getPoster(path){
 
 function Metadata() {
 
-  const { id } = useParams()
+  const { id, type } = useParams()
 
   const [details, setDetails] = useState({})
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+    fetch(`https://api.themoviedb.org/3/${type}/${id}?language=en-US`, options)
     .then(res => res.json())
     .then(data => {
       setDetails(data)
@@ -36,7 +36,7 @@ function Metadata() {
     .catch(err => console.log(err))
   }, [])
 
-
+  console.log(id)
   const bgBackdrop = {
     backgroundImage: `url('${getBackdrop(details.backdrop_path)}')`,
     backgroundRepeat: "no-repeat",

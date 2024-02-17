@@ -17,7 +17,7 @@ function getGenre(ids){
     return foundGenre ? foundGenre.name : undefined
 }
 
-function Info({id, title, language, posters, desc, rating, date, genre_id, isShow, setShow}) {
+function Info({type, id, title, language, posters, desc, rating, date, genre_id, isShow, setShow}) {
   
   const infoAnimation = {
     open: {opacity: 1, y: "-20rem", display: "block"},
@@ -38,7 +38,7 @@ function Info({id, title, language, posters, desc, rating, date, genre_id, isSho
       <div className="info-header">
         <div className="posters">
           <img src={posters} alt="" />
-          <Link to={`/metadata/${id}`}><motion.div className="button" whileHover={{scale: 1.2}} whileTap={{scale: 0.9}}>Details</motion.div></Link>
+          <Link to={`/metadata/${type}/${id}`}><motion.div className="button" whileHover={{scale: 1.2}} whileTap={{scale: 0.9}}>Details</motion.div></Link>
         </div>
         <div className="header-content">
           <div className="title"><h2>{title}</h2><span>{date}</span></div>
