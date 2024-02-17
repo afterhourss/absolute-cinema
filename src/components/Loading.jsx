@@ -1,6 +1,9 @@
 function Loading() {
   return (
-    <div>Loading</div>
+    <div className="load">
+      <img src="/loading.gif" alt="" />
+      <p>Loading...</p>
+    </div>
   )
 }
 

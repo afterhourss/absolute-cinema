@@ -6,6 +6,8 @@ import App from './App.jsx'
 import Home from './Home.jsx'
 import Tvseries from './Tvseries.jsx'
 import Movies from './Movies.jsx'
+import Search from './Search.jsx'
+import Metadata from './components/Metadata.jsx'
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,8 @@ const router = createBrowserRouter([
       { index: true, element: <Home/> },
       { path: "movies", element: <Movies/> },
       { path: "tvseries", element: <Tvseries/> },
+      { path: "search/:query", element: <Search/> },
+      { path: "metadata/:id", element: <Metadata/> },
     ]
   },
 ])

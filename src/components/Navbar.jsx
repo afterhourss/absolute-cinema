@@ -10,7 +10,7 @@ import { motion } from "framer-motion"
 function Navbar({darkTheme, setDarkTheme}) {
 
     const [hiddenBar, setHiddenBar] = useState(true);
-
+    
 
   return (
     <>
@@ -19,7 +19,9 @@ function Navbar({darkTheme, setDarkTheme}) {
             <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} className="icon" onClick={() => setHiddenBar(!hiddenBar)}>
                 <IoMdMenu />
             </motion.div>
-            <h1>Absc</h1>
+            <Link to="/">
+                <h1>Absc</h1>
+            </Link>
         </div>
         <div className="navbar-right">
             <ul>
@@ -27,8 +29,12 @@ function Navbar({darkTheme, setDarkTheme}) {
                 <li><Link to="/movies">Movie</Link></li>
                 <li><Link to="/tvseries">Tv Series</Link></li>
             </ul>
-            <Searchbar/>
-            <FaGithub className="icon"/>
+            <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.9}}>
+                <Searchbar/>
+            </motion.div>
+            <a href="https://github.com/afterhourss/absolute-cinema" target="_blank">
+                <FaGithub className="icon"/>
+            </a>
             <motion.div whileHover={{scale: 1.2}} whileTap={{scale: 0.9}} onClick={() => setDarkTheme(!darkTheme)}>
                 {darkTheme ? <MdOutlineLightMode className="icon" /> : <MdDarkMode className="icon"/>}
             </motion.div>

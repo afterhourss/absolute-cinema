@@ -1,7 +1,11 @@
-import Card from "./components/Card"
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import options from "./api"
 import Pagination from "./components/Pagination"
+import Loading from "./components/Loading"
+import { Helmet, HelmetProvider } from "react-helmet-async"
+
+
+const Card = lazy(() => delayMock(import('./components/Card')))
 
 function Tvseries() {
 
@@ -19,13 +23,25 @@ function Tvseries() {
   }, [currentPage])
 
   return (
-    <>
+    <HelmetProvider>
+    <Helmet>
+      <title>List of all tv series</title>
+    </Helmet>
     <div className="container">
-        <p>List by Tv Series</p>
-        <Card movies={tvSeries}/>
+        <p className="title-tvseries-page">List by Tv Series</p>
+        <Suspense fallback={<Loading/>}>
+          <Card movies={tvSeries}/>
+        </Suspense>
         <Pagination data={tvSeries} setPage={setCurrentPage} currPage={currentPage}/>
     </div>
-    </>
+    </HelmetProvider>
+  )
+}
+
+function delayMock(promise){
+  return new Promise(resolve => {
+    setTimeout(resolve, 2000)
+  }).then(() => promise
   )
 }
 

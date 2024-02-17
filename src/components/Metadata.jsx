@@ -1,18 +1,75 @@
-import React from 'react'
+import Label from './Label'
+import genres from '../assets/genres'
+import options from '../api'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
+function getGenre(ids){
+  const foundGenre = genres.find(genre => genre.id === ids)
+  return foundGenre ? foundGenre.name : undefined
+}
+
+function getBackdrop(path){
+  return `https://image.tmdb.org/t/p/w533_and_h300_bestv2${path}`
+}
+
+function getPoster(path){
+  if(path){
+    return `https://media.themoviedb.org/t/p/w220_and_h330_face/${path}`
+  }else if(path === null){
+    return '/no_posters.png'
+  }
+}
 
 function Metadata() {
 
+  const { id } = useParams()
+
+  const [details, setDetails] = useState({})
+
+  useEffect(() => {
+    fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+    .then(res => res.json())
+    .then(data => {
+      setDetails(data)
+    })
+    .catch(err => console.log(err))
+  }, [])
+
+
+  const bgBackdrop = {
+    backgroundImage: `url('${getBackdrop(details.backdrop_path)}')`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "top",
+    backgroundSize: "cover"
+  }
+
   return (
     <>
-    <div className='metadata-background' style={{background: "linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 90%), url('/img_posters/3.png') no-repeat"}}></div>
-    <div className='container'>
-        <div className='metadata-poster'>
-          <img src="/img_posters/4.png" alt="" />
+    <div className='metadata-wrapper'>
+        <div className='metadata-background' style={bgBackdrop}>
         </div>
-        <div className='metadata-content'>
-          <h2>The Batman</h2>
-          <p>2022</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora dolor sequi iste assumenda nulla a deserunt reiciendis voluptas nobis nemo?</p>
+        <div className='sub-wrapper'>
+          <div className='metadata-poster'>
+            <img src={getPoster(details.poster_path)} alt="" />
+          </div>
+          <div className='head-content'>
+            <div className='head-left'>
+              <h2>{details.title}</h2>
+              <p className='tagline'>{details.tagline}</p>
+              <p>{details.release_date}</p>
+            </div>
+            <div className='head-right'>
+              <a href={`https://www.imdb.com/title/${details.imdb_id}/?ref_=hm_tpks_tt_i_4_pd_tp1_pbr_ic`} target='_blank'>
+                <img src="/imdblogo.png" alt="" />
+              </a>
+            </div>
+          </div>
+          <p>{details.vote_average?.toFixed(1)}/10</p>
+          {details.genres?.map(item => (
+            <Label key={item.id}>{getGenre(item.id)}</Label>
+          ))}
+          <p className='overview'>{details.overview}</p>
         </div>
     </div>
     </>

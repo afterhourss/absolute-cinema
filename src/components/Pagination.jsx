@@ -1,32 +1,34 @@
 import { useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
+
 function Pagination({ data, setPage, currPage }) {
+
+  
 
   const [sliceIndexStart, setSliceIndexStart] = useState(0)
 
   const totalPage = data.total_pages
-  const currentPage = currPage
 
-  const sliced = 6
-  const sliceIndexEnd = sliceIndexStart + sliced
+  const dataLimit = 6
+  const sliceIndexEnd = sliceIndexStart + dataLimit
 
   function handlePageClick(pageNumber){
     setPage(pageNumber)
   }
   function handleNextClick(){
-    if(currentPage === sliceIndexEnd){
+    if(currPage === sliceIndexEnd){
       setSliceIndexStart(sliceIndexStart + 1)
-      setPage(currentPage + 1)
+      setPage(currPage + 1)
     }
-    setPage(currentPage + 1)
+    setPage(currPage + 1)
   }
   function handleBackClick(){
-    if(currentPage === (sliceIndexStart + 1)){
+    if(currPage === (sliceIndexStart + 1)){
       setSliceIndexStart(sliceIndexStart - 1)
-      setPage(currentPage - 1)
+      setPage(currPage - 1)
     }
-    setPage(currentPage - 1)
+    setPage(currPage - 1)
   }
 
   function renderPageNumbers(){
@@ -41,11 +43,11 @@ function Pagination({ data, setPage, currPage }) {
   return (
     <div>
       <ul className="pagination">
-        {currentPage === 1 ? " " : <li onClick={() => handleBackClick()}>
+        {currPage === 1 ? " " : <li onClick={() => handleBackClick()}>
           <button><IoIosArrowBack /></button>
         </li>}
         {renderPageNumbers().map(num => {
-        return <li key={num} className={num === currentPage ? 'active' : ''}>
+        return <li key={num} className={num === currPage ? 'active' : ''}>
           <button onClick={() => handlePageClick(num)}>{num}</button>
         </li>})}
         {(renderPageNumbers().length > 5) && <li>

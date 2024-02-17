@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 import { IoMdClose } from "react-icons/io"
 import Label from "./Label"
 import genres from "../assets/genres"
+import { Link } from "react-router-dom"
 
 function limitString(text, stringLength){
   if(text.length > stringLength){
@@ -16,7 +17,7 @@ function getGenre(ids){
     return foundGenre ? foundGenre.name : undefined
 }
 
-function Info({title, posters, desc, rating, date, genre_id, isShow, setShow}) {
+function Info({id, title, language, posters, desc, rating, date, genre_id, isShow, setShow}) {
   
   const infoAnimation = {
     open: {opacity: 1, y: "-20rem", display: "block"},
@@ -35,10 +36,14 @@ function Info({title, posters, desc, rating, date, genre_id, isShow, setShow}) {
         </Label>
       </div>
       <div className="info-header">
-        <img src={posters === null ? '/no_posters.png' : posters} alt="" />
+        <div className="posters">
+          <img src={posters} alt="" />
+          <Link to={`/metadata/${id}`}><motion.div className="button" whileHover={{scale: 1.2}} whileTap={{scale: 0.9}}>Details</motion.div></Link>
+        </div>
         <div className="header-content">
           <div className="title"><h2>{title}</h2><span>{date}</span></div>
           <p>{rating}/10⭐</p>
+          <p>Language : {language}</p>
           {genre_id?.map(item => (
             <Label key={item}>{getGenre(item)}</Label>
           ))}
@@ -49,11 +54,8 @@ function Info({title, posters, desc, rating, date, genre_id, isShow, setShow}) {
           </div>
         </div>
       </div>
-      
-      {/* <div className="info-button">
-        <div className="btn-seemore">See More</div>
-      </div> */}
     </motion.div>
+    <motion.div className={`blank-info ${isShow ? '' : 'hidden'}` } animate={isShow ? "blankSideOpen" : "blankSideClose"} variants={infoAnimation} onClick={() => setShow(false)}></motion.div>
     </>
   )
   

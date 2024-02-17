@@ -1,33 +1,49 @@
-import Card from "./components/Card"
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
+import { useParams } from "react-router-dom"
 import options from "./api"
-import Navbar from "./components/Navbar"
 import Pagination from "./components/Pagination"
+import Loading from "./components/Loading"
+import { Helmet, HelmetProvider } from "react-helmet-async"
 
-function Search({searchText}) {
+const Card = lazy(() => delayMock(import("./components/Card")))
 
+function Search() {
+
+  const { query } = useParams()
   const [searched, setSearched] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/search/multi?query=Fight%20club&include_adult=false&language=en-US&page=${currentPage}`, options)
+    fetch(`https://api.themoviedb.org/3/search/multi?query=${query}&include_adult=false&language=en-US&page=${currentPage}`, options)
       .then(response => response.json())
       .then(data => {
         setSearched(data)
       })
         .catch(err => console.log(err))
-  }, [currentPage])
+  }, [currentPage, query])
 
+  const paramText = decodeURI(query)
 
   return (
-    <>
-    <Navbar/>
+    <HelmetProvider>
+    <Helmet>
+      <title>Search {paramText}</title>
+    </Helmet>
     <div className="container">
-        <p>List by all Search</p>
-        <Card movies={searched}/>
-        <Pagination data={searched} setPage={setSearched} currPage={currentPage}/>
+        <p>Search by "{paramText}"</p>
+        <Suspense fallback={<Loading/>}>
+          <Card movies={searched}/>
+        </Suspense>
+        <Pagination data={searched} setPage={setCurrentPage} currPage={currentPage}/>
     </div>
-    </>
+    </HelmetProvider>
+  )
+}
+
+function delayMock(promise){
+  return new Promise(resolve => {
+    setTimeout(resolve, 2000)
+  }).then(() => promise
   )
 }
 

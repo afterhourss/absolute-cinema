@@ -27,7 +27,9 @@ function Sidebar({isHidden, setHidden, darkTheme, setDarkTheme}) {
                 <li><Link to="/movies" onClick={() => setHidden(!isHidden)}>Movie</Link></li>
                 <li><Link to="/tvseries" onClick={() => setHidden(!isHidden)}>Tv Series</Link></li>
             </ul>
-            <FaGithub className="icon"/>
+            <a href="https://github.com/afterhourss/absolute-cinema" target="_blank">
+                <FaGithub className="icon"/>
+            </a>
             <MdOutlineLightMode className="icon" onClick={() => setDarkTheme(!darkTheme)}/>
         </div>
         <div className="sidebar-icon-close" onClick={() => setHidden(!isHidden)}>
