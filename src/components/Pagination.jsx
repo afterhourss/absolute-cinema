@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import { useParams } from "react-router-dom";
 
 
 function Pagination({ data, setPage, currPage }) {
 
-  
 
   const [sliceIndexStart, setSliceIndexStart] = useState(0)
-
+  
   const totalPage = data.total_pages
 
   const dataLimit = 6
@@ -53,9 +53,9 @@ function Pagination({ data, setPage, currPage }) {
         {(renderPageNumbers().length > 5) && <li>
           <button>...</button>
         </li>}
-        <li onClick={() => handleNextClick()}>
+        {currPage >= totalPage ? " " : <li onClick={() => handleNextClick()}>
           <button><IoIosArrowForward /></button>
-        </li>
+        </li>}
       </ul>
     </div>
   )
