@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from "react"
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import options from "./api"
 import Pagination from "./components/Pagination"
 import Loading from "./components/Loading"
@@ -9,6 +9,7 @@ const Card = lazy(() => delayMock(import("./components/Card")))
 
 function Search() {
 
+  
   const { query } = useParams()
   const [searched, setSearched] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,6 +23,12 @@ function Search() {
         .catch(err => console.log(err))
   }, [currentPage, query])
 
+  //kalo querynya berubah, set current pagenya jadi 1 lagi
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [query])
+
+  //ngambil value dari parameter buat di display di title
   const paramText = decodeURI(query)
 
   return (
