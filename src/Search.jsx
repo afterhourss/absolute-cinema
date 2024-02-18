@@ -37,7 +37,7 @@ function Search() {
       <title>Search {paramText}</title>
     </Helmet>
     <div className="container">
-        <p>Search by "{paramText}"</p>
+        <p className="title-page">Search by "{paramText}"</p>
         <Suspense fallback={<Loading/>}>
           <Card movies={searched}/>
         </Suspense>

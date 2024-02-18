@@ -27,7 +27,7 @@ function Tvseries() {
       <title>List of all tv series</title>
     </Helmet>
     <div className="container">
-        <p className="title-tvseries-page">List by Tv Series</p>
+        <p className="title-page">List by Tv Series</p>
         <Suspense fallback={<Loading/>}>
           <Card movies={tvSeries} type={"tv"}/>
         </Suspense>
