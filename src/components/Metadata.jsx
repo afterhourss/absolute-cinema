@@ -3,6 +3,8 @@ import genres from '../assets/genres'
 import options from '../api'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import Error from './Error'
+import Loading from './Loading'
 
 function getGenre(ids){
   const foundGenre = genres.find(genre => genre.id === ids)
@@ -24,16 +26,23 @@ function getPoster(path){
 function Metadata() {
 
   const { id, type } = useParams()
-
   const [details, setDetails] = useState({})
+  const [error,setError] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/${type}/${id}?language=en-US`, options)
-    .then(res => res.json())
+    .then(res => {
+      if(!res.ok){
+        throw new Error("Server error")
+      }
+      return res.json()
+    })
     .then(data => {
       setDetails(data)
+      setLoading(false)
     })
-    .catch(err => console.log(err))
+    .catch(err => setError(err))
   }, [])
 
   const bgBackdrop = {
@@ -42,6 +51,9 @@ function Metadata() {
     backgroundPosition: "top",
     backgroundSize: "cover"
   }
+
+  if (error) return <Error/>
+  if (loading) return <Loading/>
 
   return (
     <>
