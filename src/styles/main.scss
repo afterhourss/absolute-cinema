@@ -84,9 +84,6 @@ body{
                     background-color: #e3e3e3;
                     border: none;
                 }
-                input:focus{
-                    outline: none;
-                }
             }
         }
     }
@@ -196,11 +193,12 @@ body{
         width: 170px;
         height: 170px;
         object-fit: cover;
+        border-radius: 4px;
     }
     h2{
         font-weight: 800;
         color: #1C1E21;
-        font-size: 1.3rem;
+        font-size: 2rem;
     }
     p{
         font-weight: 400;
@@ -383,15 +381,13 @@ body{
     padding: 50px 0;
     li{
         list-style-type: none;
-        background-color: #EBEDF0;
-        color: grey;
-        border-radius: 8px;
+        border-radius: 4px;
         button{
             cursor: pointer;
-            width: 30px;
-            height: 30px;
+            width: 34px;
+            height: 34px;
             border: none;
-            border-radius: 8px;
+            border-radius: 4px;
             font-size: 1rem;
             font-weight: 500;
             font-family: 'Poppins';
@@ -402,8 +398,8 @@ body{
 
 .active{
     button{
-        background-color: #636363;
-        color: #fff;
+        background-color: #9d9d9d;
+        color: #ffffff;
     }
 }
 
@@ -473,6 +469,7 @@ body{
         width: 150px;
         height: 150px;
         object-fit: cover;
+        border-radius: 4px;
     }
     p{
         font-weight: 600;
