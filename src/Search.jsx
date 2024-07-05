@@ -15,13 +15,18 @@ function Search() {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/search/multi?query=${query}&include_adult=false&language=en-US&page=${currentPage}`, options)
-      .then(response => response.json())
-      .then(data => {
-        setSearched(data)
-      })
-        .catch(err => console.log(err))
-  }, [currentPage, query])
+    let ignore = false;
+    if (!ignore) {
+      fetch(`https://api.themoviedb.org/3/search/multi?query=${query}&include_adult=false&language=en-US&page=${currentPage}`, options)
+        .then(response => response.json())
+        .then(data => {
+          setSearched(data)
+        })
+          .catch(err => console.log(err))
+    }
+
+    return () => ignore = true;
+  }, [currentPage, query, searched])
 
   //kalo querynya berubah, set current pagenya jadi 1 lagi
   useEffect(() => {

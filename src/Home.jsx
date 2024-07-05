@@ -22,12 +22,17 @@ function Home() {
 const [trending, setrending] = useState([])
 
   useEffect(() => {
-    fetch("https://api.themoviedb.org/3/trending/all/day?language=en-US", options)
-      .then(response => response.json())
-      .then(data => {
-        setrending(data)
-      })
-        .catch(err => console.log(err))
+    let ignore = false;
+    if (!ignore) {
+      fetch("https://api.themoviedb.org/3/trending/all/day?language=en-US", options)
+        .then(response => response.json())
+        .then(data => {
+          setrending(data)
+        })
+          .catch(err => console.log(err))
+    }
+
+    return () => ignore = true
   }, [])
 
   return (

@@ -31,6 +31,8 @@ function Metadata() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    let ignore = false;
+    if (!ignore) {
     fetch(`https://api.themoviedb.org/3/${type}/${id}?language=en-US`, options)
     .then(res => {
       if(!res.ok){
@@ -43,6 +45,8 @@ function Metadata() {
       setLoading(false)
     })
     .catch(err => setError(err))
+  }
+  return () => ignore = true
   }, [])
 
   const bgBackdrop = {

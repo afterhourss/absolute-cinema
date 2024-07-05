@@ -13,13 +13,17 @@ function Tvseries() {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
+    let ignore = false;
+    if (!ignore) {
     fetch(`https://api.themoviedb.org/3/tv/popular?language=en-US&page=${currentPage}`, options)
       .then(response => response.json())
       .then(data => {
         setTvSeries(data)
       })
         .catch(err => console.log(err))
-  }, [currentPage])
+    }
+    return () => ignore = true
+  }, [currentPage, currentPage])
 
   return (
     <HelmetProvider>

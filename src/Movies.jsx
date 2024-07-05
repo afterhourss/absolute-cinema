@@ -14,13 +14,17 @@ function Movies() {
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${currentPage}`, options)
-      .then(response => response.json())
-      .then(data => { 
-        setMovies(data)
-      })
-        .catch(err => console.log(err))
-  }, [currentPage])
+    let ignore = false;
+    if (!ignore) {
+      fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${currentPage}`, options)
+        .then(response => response.json())
+        .then(data => { 
+          setMovies(data)
+        })
+          .catch(err => console.log(err))
+    }
+        return () => ignore = true
+  }, [currentPage, movies])
 
 
   return (
