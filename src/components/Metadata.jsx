@@ -42,12 +42,15 @@ function Metadata() {
     })
     .then(data => {
       setDetails(data)
+      console.log(data)
       setLoading(false)
     })
     .catch(err => setError(err))
   }
   return () => ignore = true
   }, [])
+
+  
 
   const bgBackdrop = {
     backgroundImage: `url('${getBackdrop(details.backdrop_path)}')`,
@@ -70,7 +73,7 @@ function Metadata() {
           </div>
           <div className='head-content'>
             <div className='head-left'>
-              <h2>{details.title}</h2>
+              <h2>{details.title || details.name}</h2>
               <p className='tagline'>{details.tagline}</p>
               <p>{details.release_date}</p>
             </div>
